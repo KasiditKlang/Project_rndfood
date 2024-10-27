@@ -1,0 +1,272 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+}
+
+/* nav */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*background-color: #F5A53F;  */
+    background-color: #FE8C05;
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    z-index: 1000;
+    font-family: "Istok Web", sans-serif;
+    }
+    
+    .navbar .logo {
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    }
+    
+    .logo-img {
+    height: 75px;
+    width: auto;
+    margin: 0;
+    }
+    
+    .logo-text {
+    margin-left: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    }
+    
+    .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding-right: 50px;
+    }
+    
+    .nav-links li {
+    margin-left: 30px;
+    }
+    
+    .nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 0 10px;
+    }
+    
+    .nav-links a:hover {
+    color: #0046DC;
+    }
+    
+    /* hamburger */
+    /* Hamburger Icon Styles */
+    .hamburger {
+    position: fixed; /* ให้อยู่ที่ตำแหน่งเดิมแม้เลื่อนหน้า */
+    top: 20px;
+    right: 1%; /* จัดตำแหน่งไปทางขวา */
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+    }
+    
+    .hamburger span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background-color: #ffffff;
+    transition: 0.3s;
+    }
+    
+    /* Animation: When active (menu opened) */
+    .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+    opacity: 0; /* ซ่อนเส้นกลางเมื่อเปิด */
+    }
+    
+    .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    }
+    
+    /* Mobile Menu Initial State (ซ่อนเมนู) */
+    #mobile-menu {
+    position: absolute; /* ให้อยู่ใต้ Hamburger */
+    top: 60px; /* ระยะห่างจาก Hamburger */
+    right: 20px; /* จัดให้ตรงกับ Hamburger */
+    width: 20%; /* กำหนดความกว้างของเมนู */
+    max-height: 0;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.5s ease-in-out;
+    z-index: 999;
+    }
+    
+    /* Menu Items */
+    #mobile-menu ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    text-align: left;
+    }
+    
+    #mobile-menu ul li {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    }
+    
+    /* Active State for Mobile Menu */
+    #mobile-menu.active {
+    max-height: 300px; /* ปรับขนาดให้พอดีกับเนื้อหา */
+    }
+    .logo p {
+        position: absolute;
+        right: 4%;
+        font-size: 26px; /* ขนาดฟอนต์ */
+        font-weight: bold; /* น้ำหนักฟอนต์ */
+        color: #ffffff; /* สีฟอนต์ */
+        text-align: right; /* จัดตำแหน่งข้อความไปทางขวา */
+        margin-right: 10px; /* ระยะห่างจากขอบขวา */
+        font-family: 'Poppins', sans-serif; /* ฟอนต์ */
+        text-transform: capitalize; /* ทำให้ตัวอักษรขึ้นต้นด้วยตัวใหญ่ */
+    }
+
+h2 {
+    margin: 0;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.content-container {
+    max-width: 800px;
+    margin: 50px auto;
+    margin-top: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 70px;
+    padding-right: 70px;
+    background-color: white;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.meal-image-history {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.history-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.history-list li {
+    margin-bottom: 20px;
+}
+
+.history-container h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+/* ปรับ list ให้เป็น grid */
+.history-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 คอลัมน์ */
+    gap: 45px; /* ระยะห่างระหว่างเมนู */
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+/* กำหนดสไตล์ของแต่ละรายการเมนู */
+.meal-item {
+    list-style: none;
+}
+
+/* พื้นหลังและสไตล์ของแต่ละเมนู */
+.meal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #ffecd2, #fcb69f); /* พื้นหลังไล่สี */
+    border-radius: 15px; /* มุมโค้ง */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border: 2px solid transparent; /* กรอบโปร่งใส */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* เพิ่มเอฟเฟกต์เมื่อ hover */
+.meal-container:hover {
+    transform: scale(1.05); /* ขยายเล็กน้อยเมื่อ hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* เพิ่มเงาเมื่อ hover */
+    border-color: #ff6f61; /* เปลี่ยนสีกรอบเมื่อ hover */
+}
+
+/* สไตล์ของรูปอาหาร */
+.meal-image-history {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* สไตล์ของชื่อเมนู */
+.meal-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* ปุ่มลบ */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff3f3f;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* ปุ่มลบเมื่อ hover */
+button:hover {
+    background-color: #cc0000;
+}

@@ -1,0 +1,359 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #f0f4f8;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* nav */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*background-color: #F5A53F;  */
+    background-color: #FE8C05;
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    z-index: 1000;
+    font-family: "Istok Web", sans-serif;
+    }
+    
+    .navbar .logo {
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    }
+    
+    .logo-img {
+    height: 75px;
+    width: auto;
+    margin: 0;
+    }
+    
+    .logo-text {
+    margin-left: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    }
+    
+    .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding-right: 50px;
+    }
+    
+    .nav-links li {
+    margin-left: 30px;
+    }
+    
+    .nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    padding: 0 10px;
+    }
+    
+    .nav-links a:hover {
+    color: #0046DC;
+    }
+    
+    /* hamburger */
+    /* Hamburger Icon Styles */
+    .hamburger {
+    position: fixed; /* ให้อยู่ที่ตำแหน่งเดิมแม้เลื่อนหน้า */
+    top: 20px;
+    right: 1%; /* จัดตำแหน่งไปทางขวา */
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+    }
+    
+    .hamburger span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background-color: #ffffff;
+    transition: 0.3s;
+    }
+    
+    /* Animation: When active (menu opened) */
+    .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+    opacity: 0; /* ซ่อนเส้นกลางเมื่อเปิด */
+    }
+    
+    .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    }
+    
+    /* Mobile Menu Initial State (ซ่อนเมนู) */
+    #mobile-menu {
+    position: absolute; /* ให้อยู่ใต้ Hamburger */
+    top: 60px; /* ระยะห่างจาก Hamburger */
+    right: 20px; /* จัดให้ตรงกับ Hamburger */
+    width: 20%; /* กำหนดความกว้างของเมนู */
+    max-height: 0;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: max-height 0.5s ease-in-out;
+    z-index: 999;
+    }
+    
+    /* Menu Items */
+    #mobile-menu ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    text-align: left;
+    }
+    
+    #mobile-menu ul li {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    }
+    
+    /* Active State for Mobile Menu */
+    #mobile-menu.active {
+    max-height: 300px; /* ปรับขนาดให้พอดีกับเนื้อหา */
+    }
+    .logo p {
+        position: absolute;
+        right: 4%;
+        font-size: 26px; /* ขนาดฟอนต์ */
+        font-weight: bold; /* น้ำหนักฟอนต์ */
+        color: #ffffff; /* สีฟอนต์ */
+        text-align: right; /* จัดตำแหน่งข้อความไปทางขวา */
+        margin-right: 10px; /* ระยะห่างจากขอบขวา */
+        font-family: 'Poppins', sans-serif; /* ฟอนต์ */
+        text-transform: capitalize; /* ทำให้ตัวอักษรขึ้นต้นด้วยตัวใหญ่ */
+    }
+  /* Container for Meal Generator and Meal History */
+  .content-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 80px; /* Adjust spacing from the navbar */
+  }
+
+  .app-container {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 450px;
+    padding: 30px;
+    text-align: center;
+  }
+
+  h1 {
+    font-weight: 700;
+    color: #ff6f61;
+    margin-bottom: 10px;
+  }
+
+  /* Meal image styling to ensure consistency */
+  .meal-image {
+    border-radius: 15px;
+    margin: 20px 0;
+    width: 300px; /* Fixed width */
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Ensures the image fits nicely without distortion */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+    background-color: #ff6f61;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #ff3f3f;
+  }
+
+  .confirm-container {
+    margin-top: 10px;
+  }
+
+  /* Confirm button with green background */
+  #confirm-btn {
+    background-color: #4caf50; /* Green background color */
+  }
+
+  #confirm-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+
+  .add-menu-form {
+    display: none;
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .add-menu-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .add-menu-form button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .add-menu-form button:hover {
+    background-color: #45a049;
+  }
+
+  /* History container styling */
+  .history-container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: fit-content;
+  }
+
+  .history-container h2 {
+    color: #ff6f61;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px; /* Set a fixed maximum height to the history list */
+    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+  }
+
+  .history-list li {
+padding: 10px;
+background-color: #fff;
+margin-bottom: 8px;
+border-radius: 8px;
+box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+display: flex;
+flex-direction: column;
+align-items: center; /* Center the content horizontally */
+text-align: center;
+}
+
+  .history-list li span {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .history-list li button {
+    background-color: #ff3f3f; /* Red background color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .history-list li button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+  }
+  .meal-history-item {
+width: 100%;
+position: relative; /* Enable absolute positioning for the delete button */
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 8px;
+}
+.delete-btn {
+position: absolute;
+top: 10px;
+right: 10px;
+background-color: #ff3f3f;
+color: white;
+border: none;
+border-radius: 5px;
+padding: 5px 10px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+.delete-btn:hover {
+background-color: #cc0000;
+}
+
+.meal-image-history {
+width: 200px;
+height: 120px;
+border-radius: 8px;
+object-fit: cover;
+}
+.meal-text {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 4px;
+}
+.meal-name {
+font-weight: 600;
+font-size: 18px;
+color: #333;
+}
+.meal-timestamp {
+font-size: 14px;
+color: gray;
+}
+
+  .meal-details {
+    flex-direction: column;
+    align-items: left;
+    gap: 5px; /* Space between name, timestamp, and image */
+  }

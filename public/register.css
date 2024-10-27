@@ -1,0 +1,53 @@
+body {
+    background-image: url('./pic/bgLogin.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Istok Web', sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    position: absolute;
+    left: 19%;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.container input {
+    width: 93%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #FFA733;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.container button:hover {
+    background-color: #ff8a00;
+}
+
+.login-link a {
+    color: #0046DC;
+}

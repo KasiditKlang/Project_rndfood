@@ -4,83 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Menu</title>
-    <link rel="stylesheet" href="/style.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f4f8;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav {
-            background-color: #ff6f61;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-        }
-
-        h2 {
-            margin: 0;
-        }
-
-        button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .content-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        .meal-image-history {
-            width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .history-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .history-list li {
-            margin-bottom: 20px;
-        }
-
-        .history-container h2 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-    </style>
+    <link rel="stylesheet" href="deleteMenu.css">
 </head>
 <body>
-    <nav>
-        <h2>Delete Menu</h2>
-        <button onclick="goBack()">Back to Menu</button>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#">
+                <img src="pic/Logo.png" alt="Logo" class="logo-img">
+            </a>
+            <p>Loading...</p> <!-- ข้อความชั่วคราว -->
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="mobile-menu">
+            <ul>
+                <li><a href="rndFood.html">Random Menu</a></li>
+                <li><a href="rndFood.html?clickButton=true">Add Random Menu</a></li>
+                <li><a href="#">Random History</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="login.html">Log out</a></li>
+            </ul>
+        </nav>
     </nav>
 
     <div class="content-container">
@@ -90,69 +38,7 @@
         </div>
     </div>
 
-    <script>
-        function getAuthToken() {
-    return localStorage.getItem('authToken');
-}
-        async function loadMeals() {
-            try {
-                const response = await fetch('/api/meals', {
-            headers: { 'Authorization': `Bearer ${getAuthToken()}` }
-        });
-                if (!response.ok) throw new Error('Failed to load meals from MongoDB');
-                const meals = await response.json();
-
-                const menuList = document.getElementById('delete-menu-list');
-                menuList.innerHTML = '';
-
-                meals.forEach(meal => {
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = `
-                        <div>
-                            <img src="${meal.image}" alt="${meal.name}" class="meal-image-history">
-                            <span>${meal.name}</span>
-                        </div>
-                        <button onclick="deleteMeal('${meal._id}')">Delete</button>
-                    `;
-                    menuList.appendChild(listItem);
-                });
-            } catch (error) {
-                console.error('Error loading meals:', error);
-            }
-        }
-
-        async function deleteMeal(mealId) {
-    if (confirm('Are you sure you want to delete this meal?')) {
-        try {
-            const response = await fetch(`/api/meals/${mealId}`, {
-    headers: {
-        'Authorization': `Bearer ${getAuthToken()}`
-    },
-    method: 'DELETE'
-});
-
-
-            if (response.ok) {
-                alert('Meal deleted successfully!');
-                loadMeals(); // Refresh the list after deletion
-            } else {
-                const errorMessage = await response.text();
-                alert(`Failed to delete meal: ${errorMessage}`);
-            }
-        } catch (error) {
-            console.error('Error deleting meal:', error);
-            alert('Error deleting meal. Please try again.');
-        }
-    }
-}
-
-
-
-        function goBack() {
-            window.location.href = 'rndFood.html';
-        }
-
-        window.onload = loadMeals;
+    <script src="deleteMenu.js">
     </script>
 </body>
 </html>

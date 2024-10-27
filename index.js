@@ -9,16 +9,17 @@ require('dotenv').config();
 const authenticateToken = require('./middleware/auth');
 
 
+// User and Meal models
+const User = require('./models/User'); // Ensure this file exists with the correct schema
+const Meal = require('./models/Meals'); // Create this schema for meals
+
+
 const app = express();
 // Increase payload size limit to handle large image uploads
 app.use(express.json({ limit: '10mb' }));  // Adjust the limit as needed
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cors());
 app.use(express.static('public'));
-
-// User and Meal models
-const User = require('./models/User'); // Ensure this file exists with the correct schema
-const Meal = require('./models/Meals'); // Create this schema for meals
 
 
 // เชื่อมต่อ MongoDB
@@ -134,40 +135,103 @@ app.delete('/api/meals/:id', authenticateToken, async (req, res) => {
     }
 });
 
-
-
-
-// **Add Meal History Entry**
-app.post('/api/history', authenticateToken, async (req, res) => {
+// **API Route to Get name**
+app.get('/api/username', async (req, res) => {
     try {
-        const history = { ...req.body, userId: req.user.id, timestamp: new Date().toISOString() };
-        await mongoose.connection.collection('history').insertOne(history);
-        res.status(201).send('History added successfully');
+        const token = req.headers.authorization?.split(' ')[1];  // ดึง Token จาก Header
+        if (!token) {
+            return res.status(401).json({ error: 'No token provided' });
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);  // ตรวจสอบ Token
+        const user = await User.findById(decoded.id);  // ค้นหาผู้ใช้ในฐานข้อมูล
+
+        if (user) {
+            res.json({ username: user.username });
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
     } catch (error) {
-        console.error('Error adding history:', error);
-        res.status(500).send('Error adding history');
+        console.error('Error verifying token:', error);
+        res.status(401).json({ error: 'Invalid token' });
     }
 });
 
-// **Get Meal History**
+
+function getUserFromToken(req) {
+    const token = req.headers.authorization?.split(' ')[1]; // ดึง token จาก header
+
+    if (!token) {
+        throw new Error('No token provided');
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET); // ตรวจสอบและถอดรหัส token
+        return User.findById(decoded.id); // ค้นหาผู้ใช้จากฐานข้อมูลตาม id ใน token
+    } catch (error) {
+        throw new Error('Invalid token');
+    }
+}
+
+module.exports = getUserFromToken;
+
+const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000; // กำหนดเวลา 7 วัน (ในหน่วยมิลลิวินาที)
+
+// ฟังก์ชันลบรายการประวัติที่เก่ากว่า 1 นาที
+async function deleteOldHistory() {
+    const currentTime = new Date().getTime(); // เวลาปัจจุบันในหน่วยมิลลิวินาที
+    const cutoffTime = new Date(currentTime - SEVEN_DAYS); // เวลา 7 วันก่อนหน้า
+
+    try {
+        await mongoose.connection.collection('history').deleteMany({
+            timestamp: { $lt: cutoffTime.toISOString() }
+        });
+        console.log('ลบรายการเก่าที่เก็บไว้นานเกิน 7 วันแล้ว');
+    } catch (error) {
+        console.error('เกิดข้อผิดพลาดในการลบรายการเก่า:', error);
+    }
+}
+
+// *Add Meal History Entry*
+app.post('/api/history', authenticateToken, async (req, res) => {
+    try {
+        const historyItem = { ...req.body, userId: req.user.id, timestamp: new Date().toISOString() };
+        await mongoose.connection.collection('history').insertOne(historyItem);
+
+        // เรียกฟังก์ชันลบรายการเก่าทันทีหลังเพิ่มรายการใหม่
+        await deleteOldHistory();
+
+        res.status(201).send('บันทึกประวัติสำเร็จและลบรายการเก่าที่หมดเวลาแล้ว');
+    } catch (error) {
+        console.error('เกิดข้อผิดพลาดในการบันทึกประวัติ:', error);
+        res.status(500).send('เกิดข้อผิดพลาดในการบันทึกประวัติ');
+    }
+});
+
+// *Get Meal History*
 app.get('/api/history', authenticateToken, async (req, res) => {
     try {
-        const history = await mongoose.connection.collection('history').find({ userId: req.user.id }).toArray();
+        await deleteOldHistory(); // ลบรายการที่เก่ากว่า 1 นาที
+
+        const history = await mongoose.connection.collection('history')
+            .find({ userId: req.user.id })
+            .toArray();
+
         res.json(history);
     } catch (error) {
-        console.error('Error fetching history:', error);
-        res.status(500).send('Error fetching history');
+        console.error('เกิดข้อผิดพลาดในการโหลดประวัติ:', error);
+        res.status(500).send('เกิดข้อผิดพลาดในการโหลดประวัติ');
     }
 });
 
 // กำหนด Route สำหรับหน้าเว็บ (กรณีเข้าถึงจาก /)
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/loginResponsive.html');
+    res.sendFile(__dirname + '/public/index.html');
 });
 
 // **Serve other static pages**
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'loginResponsive.html'));
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 
