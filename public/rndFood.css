@@ -153,9 +153,12 @@ body {
     }
   /* Container for Meal Generator and Meal History */
   .content-container {
-    display: flex;
-    gap: 20px;
-    margin-top: 80px; /* Adjust spacing from the navbar */
+    display: block; /* ใช้ block แทน flex */
+    max-width: 1200px; /* กำหนดความกว้างสูงสุดให้กับเนื้อหา */
+    margin: 0 auto; /* จัดให้อยู่ตรงกลางในแนว X */
+    margin-bottom: 20px;
+    /* padding-top: 130px;  */
+    /* ปรับระยะห่างด้านบนจาก navbar */
   }
 
   .app-container {
@@ -163,7 +166,8 @@ body {
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     width: 450px;
-    padding: 30px;
+    /* padding-top: 70px; */
+    padding: 20px;
     text-align: center;
   }
 
@@ -230,7 +234,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 16px;
-    width: 100%;
+    width: 94%;
   }
 
   .add-menu-form button {
@@ -251,9 +255,9 @@ body {
   .history-container {
     display: flex;
     flex-direction: column;
-    padding: 15px;
-    border-radius: 15px;
-    background-color: #f9f9f9;
+    padding: 8px;
+    border-radius: 20px;
+    background-color: #ffffff;
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -277,8 +281,8 @@ body {
   }
 
   .history-list li {
-padding: 10px;
-background-color: #fff;
+padding: 25px;
+background-color: rgb(249, 246, 241);
 margin-bottom: 8px;
 border-radius: 8px;
 box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
@@ -295,7 +299,7 @@ text-align: center;
 
   .history-list li button {
     background-color: #ff3f3f; /* Red background color */
-    color: white;
+    color: #f9f9f9;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
@@ -331,8 +335,8 @@ background-color: #cc0000;
 }
 
 .meal-image-history {
-width: 200px;
-height: 120px;
+width: 250px;
+height: 150px;
 border-radius: 8px;
 object-fit: cover;
 }
@@ -357,3 +361,103 @@ color: gray;
     align-items: left;
     gap: 5px; /* Space between name, timestamp, and image */
   }
+/* สำหรับหน้าจอที่เล็กกว่า 525px */
+@media (max-width: 524px) {
+    .content-container {
+        display: flex;
+        flex-direction: column; /* Stack sections vertically */
+        gap: 25px;
+        align-items: center;
+          padding-top: 130px;
+          padding-bottom: 20px;
+        max-height: calc(100vh - 70px); /* ลดขนาดลงเพื่อไม่ให้เกินหน้าจอ */
+    }
+  .navbar {
+      display: flex;
+      justify-content: space-between; /* กระจายส่วนซ้าย กลาง ขวา */
+      align-items: center;
+      height: 70px;
+      padding: 10px;
+  }
+
+  /* Username ทางซ้าย */
+  .logo .username {
+      flex: 1; /* ผลักดันไปทางซ้าย */
+      /* text-align: left; */
+      padding-right: 5%;
+      font-size: 25px;
+  }
+
+  /* โลโก้ตรงกลาง */
+  .logo {
+      flex: 1;
+      display: flex;
+      justify-content: center; /* จัดให้อยู่ตรงกลาง */
+      align-items: center;
+  }
+
+  .logo-img {
+      height: 74px;
+  }
+
+  /* ซ่อน nav-links บนหน้าจอขนาดเล็ก */
+  .nav-links {
+      display: none;
+  }
+  
+
+.app-container, .history-container {
+    width: 100%; /* Ensure both sections have the same width on smaller screens */
+}
+
+.history-container {
+    margin-top: 20px; /* Add space between sections */
+}
+#mobile-menu {
+  width: 50%; /* Ensure same width as on smaller screens */
+}
+}
+ /* Content container for large screens */
+@media (min-width: 901px) {
+  .content-container {
+      display: flex;
+      flex-direction: row; /* Place sections side by side */
+      gap: 20px;
+      justify-content: center; /* Center the content */
+  }
+
+  .app-container, .history-container {
+      width: 450px; /* Ensure both sections have the same width */
+  }
+}
+
+/* For screens smaller than or equal to 900px */
+@media (min-width: 525px) and (max-width: 900px) {
+
+  .app-container, .history-container {
+      width: 94%; /* Ensure both sections have the same width on smaller screens */
+  }
+
+  .history-container {
+      margin-top: 20px; /* Add space between sections */
+      padding-left: 20px;
+      padding-right: 20px;
+  }
+  .logo .username {
+    flex: 1; /* ผลักดันไปทางซ้าย */
+    /* text-align: left; */
+    padding-right: 5%;
+    font-size: 25px;
+  }
+  .content-container {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center;
+    padding-top: 130px;
+    padding-bottom: 20px;
+  max-height: calc(100vh - 70px); /* ลดขนาดลงเพื่อไม่ให้เกินหน้าจอ */
+}
+  #mobile-menu {
+    width: 50%; /* Ensure same width as on smaller screens */
+  }
+}

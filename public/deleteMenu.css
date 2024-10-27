@@ -270,3 +270,93 @@ button {
 button:hover {
     background-color: #cc0000;
 }
+
+/* สำหรับหน้าจอที่เล็กกว่า 525px */
+@media (max-width: 524px) {
+    .navbar {
+        display: flex;
+        justify-content: space-between; /* กระจายส่วนซ้าย กลาง ขวา */
+        align-items: center;
+        height: auto;
+        padding: 10px;
+    }
+
+    /* Username ทางซ้าย */
+    .logo .username {
+        flex: 1; /* ผลักดันไปทางซ้าย */
+        /* text-align: left; */
+        padding-right: 5%;
+        font-size: 25px;
+    }
+
+    /* โลโก้ตรงกลาง */
+    .logo {
+        flex: 1;
+        display: flex;
+        justify-content: center; /* จัดให้อยู่ตรงกลาง */
+        align-items: center;
+    }
+
+    .logo-img {
+        height: 50px;
+    }
+
+    /* ซ่อน nav-links บนหน้าจอขนาดเล็ก */
+    .nav-links {
+        display: none;
+    }
+
+    /* กำหนดขนาดของเมนูมือถือ */
+    #mobile-menu {
+        width: 80%; /* กำหนดให้มีความกว้าง 80% */
+    }
+
+    .content-container {
+        padding: 10px;
+    }
+
+    .history-list {
+        grid-template-columns: 1fr; /* แสดงเป็นคอลัมน์เดียว */
+    }
+}
+
+/* Screen between 375px and 768px */
+@media (min-width: 525px) and (max-width: 900px) {
+    .navbar {
+        display: flex;
+        justify-content: space-between; /* กระจายส่วนซ้าย กลาง ขวา */
+        align-items: center;
+        height: 70px;
+        padding: 10px;
+    }
+
+    /* Username ทางซ้าย */
+    .logo .username {
+        flex: 1; /* ผลักดันไปทางซ้าย */
+        padding-right: 5%;
+        font-size: 30px;
+    }
+
+
+    .logo-img {
+        height: 60px;
+    }
+
+    .content-container {
+        padding: 20px;
+    }
+
+    .history-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #mobile-menu {
+        width: 50%; /* Ensure same width as on smaller screens */
+    }
+}
+
+/* Screen larger than 768px */
+@media (min-width: 901px) {
+    .history-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

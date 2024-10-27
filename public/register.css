@@ -1,51 +1,125 @@
 body {
-    background-image: url('./pic/bgLogin.png');
+    background-image: url('/pic/bgLogin.png'); /* ใส่เส้นทางรูปภาพจริง */
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; /* ทำให้รูปครอบคลุมหน้าจอ */
+    background-position: center;
+    background-attachment: fixed; /* ล็อคพื้นหลังให้อยู่กับที่ */
     font-family: 'Istok Web', sans-serif;
-    height: 100vh;
+    min-height: 100vh; /* ให้ความสูงอย่างน้อย 100% ของความสูงจอ */
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+/* สำหรับหน้าจอเล็ก 0-524px */
+@media (max-width: 524px) {
+    .container {
+        max-width: 300px;
+        width: 90%;
+    }
+
+    .welcome-message {
+        font-size: 18px;
+    }
+
+    .signin-button {
+        font-size: 14px;
+    }
+}
+
+/* สำหรับหน้าจอกลาง 525-900px */
+@media (min-width: 525px) and (max-width: 900px) {
+    .container {
+        max-width: 400px;
+        width: 85%;
+    }
+
+    .welcome-message {
+        font-size: 20px;
+    }
+
+    .signin-button {
+        font-size: 15px;
+    }
+}
+
+/* สำหรับหน้าจอใหญ่ 900px ขึ้นไป */
+@media (min-width: 901px) {
+    .container {
+        max-width: 500px;
+        width: 80%;
+    }
+
+    .welcome-message {
+        font-size: 22px;
+    }
+
+    .signin-button {
+        font-size: 16px;
+    }
+}
 
 .container {
-    position: absolute;
-    left: 19%;
-    padding: 30px;
+    padding: 20px 15px;
     text-align: center;
-    border-radius: 10px;
-    width: 300px;
+    max-width: 400px;
+    width: 50%;
+    position: absolute;
+    top: 50%; /* วางตรงกลางตามแนวตั้ง */
+    left: 50%; /* วางตรงกลางตามแนวนอน */
+    transform: translate(-50%, -50%); /* ย้ายให้กึ่งกลางแนวตั้งและแนวนอน */
+
+    background-image: url('pic/bgtext.png'); /* เส้นทางรูปภาพ */
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
 }
+
 
 .container h1 {
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
+    
+}
+
+.container label {
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+    display: block;
+    margin: 5px 0 5px 5%; /* ระยะห่างด้านบนและจากขอบซ้าย */
 }
 
 .container input {
-    width: 93%;
+    width: 80%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    
 }
 
 .container button {
-    width: 100%;
-    padding: 10px;
     background-color: #FFA733;
-    border: none;
-    border-radius: 5px;
     color: #fff;
     font-size: 16px;
+    font-weight: bold; /* เพิ่มความหนาของฟอนต์ให้เหมือนกัน */
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    width: 85%; /* ทำให้ความกว้างเท่ากัน */
+    margin: 10px 0;
 }
 
 .container button:hover {
     background-color: #ff8a00;
+}
+.login-link {
+    margin-top: 15px; /* เพิ่มระยะห่างด้านบน */
+    font-size: 15px; /* ปรับขนาดตัวอักษร */
+    color: #333; /* สีข้อความ */
 }
 
 .login-link a {

@@ -1,24 +1,71 @@
 body {
-    background-image: url('/pic/bgLogin.png'); /* Replace with actual image path */
+    background-image: url('/pic/bgLogin.png'); /* ใส่เส้นทางรูปภาพจริง */
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; /* ทำให้รูปครอบคลุมหน้าจอ */
+    background-position: center;
+    background-attachment: fixed; /* ล็อคพื้นหลังให้อยู่กับที่ */
     font-family: 'Istok Web', sans-serif;
-    height: 100vh;
+    min-height: 100vh; /* ให้ความสูงอย่างน้อย 100% ของความสูงจอ */
     margin: 0;
-    position: relative; /* ทำให้เราสามารถกำหนดตำแหน่งลูกได้ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* สำหรับหน้าจอเล็ก 0-524px */
+@media (max-width: 524px) {
+    .container {
+        max-width: 300px;
+        width: 90%;
+    }
+
+    .welcome-message {
+        font-size: 18px;
+    }
+
+    .signin-button {
+        font-size: 14px;
+    }
+}
+
+/* สำหรับหน้าจอกลาง 525-900px */
+@media (min-width: 525px) and (max-width: 900px) {
+    .container {
+        max-width: 400px;
+        width: 85%;
+    }
+
+    .welcome-message {
+        font-size: 20px;
+    }
+
+    .signin-button {
+        font-size: 15px;
+    }
+}
+
+/* สำหรับหน้าจอใหญ่ 900px ขึ้นไป */
+@media (min-width: 901px) {
+    .container {
+        max-width: 500px;
+        width: 80%;
+    }
+
+    .welcome-message {
+        font-size: 22px;
+    }
+
+    .signin-button {
+        font-size: 16px;
+    }
 }
 
 .container {
-    padding: 20px 15px; /* ลด padding */
+    padding: 20px 15px;
     text-align: center;
     max-width: 400px;
-    width: 50%;
-    position: absolute; /* กำหนดตำแหน่งแบบ absolute */
-    top: 13%; /* ระยะจากด้านบน */
-    left: 50%; /* กำหนดให้กลางแนวนอน */
-    transform: translateX(-50%); /* ดันไปซ้าย 50% เพื่อให้พอดีกลางจอ */
-
-    background-image: url('pic/bgtext.png'); /* ใส่เส้นทางรูปภาพของคุณ */
+    width: 80%;
+    background-image: url('pic/bgtext.png'); /* เส้นทางรูปภาพ */
     background-size: cover;
     background-position: center;
     border-radius: 20px;
@@ -48,7 +95,7 @@ body {
 }
 
 .container label {
-    font-size: 14px;
+    font-size: 15px;
     color: #333;
     text-align: left;
     display: block;
@@ -100,7 +147,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    width: 80%; /* เพิ่มความกว้าง */
+    width: 85%; /* เพิ่มความกว้าง */
     margin: 10px 0;
 }
 

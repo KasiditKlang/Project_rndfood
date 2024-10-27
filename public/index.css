@@ -96,3 +96,75 @@ body, html {
   font-size: 18px;
   line-height: 1.6;
 }
+
+/* สำหรับหน้าจอเล็ก 0-524px */
+@media (max-width: 524px) {
+  .content {
+    width: 90%;
+    height: auto;
+    margin: 20px auto;
+    background-image: none !important; /* ลบภาพพื้นหลัง */
+    box-shadow: none !important; /* ลบเงา */
+    display: block; /* ปรับให้เป็นบล็อก */
+}
+
+.content .right {
+    width: 100%;
+    margin: 0 auto; /* จัดให้อยู่กลาง */
+    padding: 20px;
+    background-color: rgba(163, 163, 163, 0.5); /* พื้นหลังโปร่งแสง */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+}
+
+.navbar {
+    height: 60px;
+    padding: 0 15px;
+}
+
+.login-button {
+    font-size: 14px;
+    padding: 5px 10px;
+}
+}
+
+/* สำหรับหน้าจอกลาง 525-900px */
+@media (min-width: 525px) and (max-width: 900px) {
+  .content {
+    width: 90%;
+    height: auto;
+    margin: 20px auto;
+    background-image: none !important; /* ลบภาพพื้นหลัง */
+    box-shadow: none !important; /* ลบเงา */
+    display: block; /* ปรับให้เป็นบล็อก */
+}
+
+.content .right {
+    width: 100%;
+    margin: 0 auto; /* จัดให้อยู่กลาง */
+    padding: 20px;
+    background-color: rgba(163, 163, 163, 0.5); /* พื้นหลังโปร่งแสง */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+}
+
+.navbar {
+    height: 60px;
+    padding: 0 15px;
+}
+
+.login-button {
+    font-size: 14px;
+    padding: 5px 10px;
+}
+}
+
+/* สำหรับหน้าจอใหญ่ 900px ขึ้นไป */
+@media (min-width: 901px) {
+  .content {
+      width: 1200px;
+  }
+
+  .content .right {
+      width: 50%;
+      margin-left: 710px;
+  }
+}

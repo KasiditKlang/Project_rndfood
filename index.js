@@ -186,7 +186,7 @@ async function deleteOldHistory() {
         await mongoose.connection.collection('history').deleteMany({
             timestamp: { $lt: cutoffTime.toISOString() }
         });
-        console.log('ลบรายการเก่าที่เก็บไว้นานเกิน 7 วันแล้ว');
+        // console.log('ลบรายการเก่าที่เก็บไว้นานเกิน 7 วันแล้ว');
     } catch (error) {
         console.error('เกิดข้อผิดพลาดในการลบรายการเก่า:', error);
     }
